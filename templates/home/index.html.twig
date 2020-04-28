@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des questions</h1>
+    <ul>
+    {% for question in questions %}
+        <li>
+            <a href="{{ path('question', { id : question.id }) }}">{{ question.title }}</a>
+             - {{ question.score }} points - 
+            <a href="{{ path('editQuestion', { id : question.id }) }}">Modifier</a>
+            <a href=""></a>
+        </li>
+    {% else %}
+        <p>Aucune question</p>
+    {% endfor %}
+    </ul>
+{% endblock %}

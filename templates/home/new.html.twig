@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div>{{ form_row(form.title)}}</div>
+        <div>
+            {{ form_row(form.score)}} 
+        </div>
+        
+   {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>{{ question.title }}</h2>
+    <ul>
+    {% for proposition in question.propositions %}
+        <li>{{ proposition.text }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

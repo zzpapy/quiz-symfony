@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    
+}
+
+#wrapper{
+    max-width: 800px;
+    margin: auto;
+    padding-top: 1em;
+}
+
+nav {
+    background-color: black;
+    padding: 1em 0;
+}
+
+nav a {
+    color: white;
+}
