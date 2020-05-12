@@ -161,6 +161,7 @@ class HomeController extends AbstractController
      * @Route("/affichage/profile", name="affich")
      */
     public function affich(Request $request,Question $question = null,Questionnaire $questionnaire = null){
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $reponse = new Reponse();
         $questRepo = $this->getDoctrine()->getRepository(Questionnaire::class);
         $questionnaires = $questRepo->findAll();
