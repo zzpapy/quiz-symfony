@@ -36,7 +36,7 @@ class QuestionnaireRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+    
     public function findOneBySomeField($value): ?Questionnaire
     {
         return $this->createQueryBuilder('q')
@@ -46,5 +46,16 @@ class QuestionnaireRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
+    public function recherche($text){
+            return $this->createQueryBuilder('q')
+            ->andWhere('q.name LIKE :val')
+            ->setParameter('val', '%'.$text.'%')
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
 }

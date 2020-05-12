@@ -72,4 +72,8 @@ class Proposition
 
         return $this;
     }
+    public function __toString()
+    {
+        return serialize($this);
+    }
 }

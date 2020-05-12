@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuestionnaireController!{% endblock %}
+
+{% block body %}
+ <h1>Liste des questionnaires</h1>
+    <table class="list_quest">
+        
+    {% for questionnaire in questionnaires %}
+        <tr>
+        <td>
+        <a href="{{ path('quest', { id : questionnaire.id }) }}">{{ questionnaire.name }} - {{ questionnaire.difficulty }}</a>
+        </td>
+        <td>
+        <a href="{{ path('likes',{'id':questionnaire.id}) }}" class="js_like_link">
+        {% if app.user and questionnaire.isLikedByUser(app.user) %}
+            <i class="fas fa-thumbs-up"></i>
+        {% else %}
+            <i class="far fa-thumbs-up"></i>
+        {% endif %}
+            <span class="js_like">{{questionnaire.likes | length}}</span>   
+            <span class="">j'aime</span>
+        </a>
+        <td>
+       
+        </tr>
+    {% else %}
+        <p>Aucune question</p>
+    {% endfor %}
+    </table>
+{% endblock %}

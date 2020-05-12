@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<h1>{{questionnaire.name}}</h1>
+{% set scoreMax = 0 %}
+    {% set score = 0 %}
+    {% set i = 1 %}
+    <div class="question">
+    {% for question in questionnaire.questions %}
+    {% set quest = "question"~i %}
+        {% set scoreMax = scoreMax + question.score %}
+        <div>
+        {% if reponse[quest]["results"]["total_reponses"] > 0 and reponse[quest]["results"]["total_reponses"] == reponse[quest]["results"]["total_possible"] and reponse[quest]["cocher"] | length <= reponse[quest]["results"]["total_possible"] %}
+            {% set score = score + question.score %}
+            <h2 class="green">{{question.title}} - score max : {{ question.score}}</h2>
+        {% elseif reponse[quest]["results"]["total_reponses"] > 0 and reponse[quest]["results"]["total_reponses"] != reponse[quest]["results"]["total_possible"] and reponse[quest]["cocher"] | length <= reponse[quest]["results"]["total_possible"] %}
+            {% set score = score + (reponse[quest]["results"]["total_reponses"] / reponse[quest]["results"]["total_possible"]) %}
+            <h2 class="yellow">{{question.title}} - score max : {{ question.score}}</h2>
+        {% else %}            
+            <h2 class="red">{{question.title}} - score max : {{ question.score}}</h2>
+        {% endif %}
+        {% for proposition in question.propositions %}
+        {% if proposition.correct == 1 %}
+            <p class="green">{{proposition.text}}</p>
+        {% else %}
+            <p >{{proposition.text}}</p>
+        {% endif %}
+            
+    {% endfor %}
+        </div>
+        {% if i < reponse | length  %}
+        {% set i = i + 1 %}
+            
+        {% endif %}
+    {% endfor %}
+    <p class="scoreView">niveau : {{questionnaire.difficulty}} - Votre résultat : {{ score|number_format(1, '.', ',')  }}/{{ scoreMax }} </p>
+    </div>
+{% endblock %}

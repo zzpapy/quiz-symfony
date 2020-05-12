@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="testJs">{{questionnaire.name}}</h1>
+   {% for question in questionnaire.questions %}
+      
+   {% endfor %}
+    {{form(form)}}
+    niveau : {{questionnaire.difficulty}}
+{% endblock %}

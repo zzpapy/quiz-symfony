@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuestionnaireController!{% endblock %}
+
+{% block body %}
+<div class="accueil">
+    <div>
+        <h1  data-set="{{ path('ajax_action')}}">Liste des questionnaires</h1>
+        
+        <table class="list_quest">
+        {% for questionnaire in questionnaires %}
+        <tr>
+            <td>
+        <a href="{{ path('home', { id : questionnaire.id }) }}">{{ questionnaire.name }}</a>
+        </td>
+        <td>{{ questionnaire.difficulty }}</td>
+        <td>
+        <a href="{{ path('modif', { id : questionnaire.id }) }}"><i class="far fa-edit"></i></a>
+        </td>
+        <td>
+        <a href="{{ path('delete', { id : questionnaire.id }) }}"><i class="fas fa-trash-alt"></i></a>
+        </td>
+        </tr>
+        {% else %}
+        <p>Aucune question</p>
+        {% endfor %}
+        </table>
+        <h2>Ajouter un questionnaire</h2>
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+        {{form(form)}}
+    </div>
+    <div>
+        <h2>Liste des membres</h2>
+        {% for user in users  %}
+        <ul>
+            <li>
+                <a href="{{ path('security',{ id:user.id}) }}">
+                {{user.email}}
+                </a>
+                </li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Hello AjaxController!{% endblock %} #}
+
+{% block body %}
+
+{% block header %}{% endblock %}
+    {% for questionnaire in result %}
+    <div>
+      <a href="{{ path('quest', { id : questionnaire.id }) }}">{{ questionnaire.name }} - {{ questionnaire.difficulty }}</a>
+    </div>
+    {% endfor %}
+{% endblock %}

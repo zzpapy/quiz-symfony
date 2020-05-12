@@ -6,18 +6,188 @@ body{
     margin: 0;
     
 }
-
+h1,h2{
+    font-size: 1.2em;
+}
 #wrapper{
-    max-width: 800px;
+    max-width: 75%;
     margin: auto;
     padding-top: 1em;
 }
 
-nav {
+.navbar {
     background-color: black;
     padding: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 nav a {
     color: white;
+}
+.red{
+    background: red;
+}
+.green{
+    background: green;
+}
+.yellow{
+    background: yellow;
+}
+.question{
+    position: relative;
+} 
+.question div p,.question div h2{
+    padding: 0.5em 1em;
+}
+.question div p{
+    width:50%;
+    margin:0.5em auto;
+}
+.scoreView{
+    position: absolute;
+    right:2em;
+    top:-2em;
+}
+.pseudo{
+    color: white;
+    padding:0 1em;
+}
+.accueil{
+    display: flex;
+    justify-content: space-between;
+}
+.accueil div:first-child{
+    flex:1;
+}
+.list_quest{
+    width: 100%;
+    table-layout: auto;
+    position: relative;
+    left: -1000px;
+    /* width: 100px; */
+    /* height: 100px; */
+    opacity: 0;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 1s forwards;
+    animation-delay: 0.5s;
+}
+.w{
+    width: 90%;
+}
+.flex_recherche{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.affich{
+    position: fixed;
+    top: 4.5em;
+    right: 25em;
+    background: #aaa;
+}
+.affich div a{
+    padding: 1em;
+    color: black;
+}
+.ajaxProp{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.ajaxProp form{
+    width: 45%;
+}
+.affichAjaxProp{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+}
+.questionAffich{
+    height: 10vh;
+    background: #aaa;
+    border: 1px solid black;
+    border-bottom: none;
+}
+.questionAffich>td:first-child{
+    text-align: center;
+    font-size: 1.5em;
+}
+.questionAffich>td{
+    padding: 0.5em;
+
+}
+#proposition{
+    display: flex;
+    justify-content: space-evenly;
+}
+.proposition{
+    display: flex;
+    justify-content: space-between;
+    background: yellow;
+    /* width: 100px; */
+    border: 1px solid black;
+    border-radius: 5px 5px 5px 5px;
+    align-items: center;
+    /* margin-bottom: 0.5em;
+    margin-left: 0.5em; */
+    padding: 0 0.5em;
+}
+a:not(.form-group){
+    color:black;
+}
+#proposition .form-group:nth-child(1n):not(:nth-child(1)){
+    margin-right:2em;
+    /* display: flex;
+    align-items: center; */
+}
+
+.form-check{
+    display: flex;
+    align-items: center;
+}
+.borderProp{
+    border-left: 1px solid black;
+    /* border-right: 1px solid black; */
+    border-bottom: 2px solid black;
+}
+.proposition div:nth-child(2){
+    flex: 1;
+    text-align: center;
+}
+.hide{
+    display: none;
+}
+.slideBox{
+    position: relative;
+}
+.prop{
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+
+}
+
+.slide {
+    position: relative;
+    left: -1000px;
+    opacity: 0;
+    height: 10vh;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 1s forwards;
+    animation-delay: 0.5s;
+}
+
+@-webkit-keyframes slide {
+    100% { position: relative;left: 0;opacity: 1; }
+}
+
+@keyframes slide {
+    100% {position: relative; left: 0; opacity: 1;}
+}
+.ajoutQuest{
+    cursor: pointer;
+    margin-left: 0.5em;
 }
