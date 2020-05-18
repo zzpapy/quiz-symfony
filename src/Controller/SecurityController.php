@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('questionnaire');
         }
         
         // $form->add('roles', ChoiceType::class,[
@@ -60,7 +60,12 @@ class SecurityController extends AbstractController
     {
         if ($this->getUser()) {
             $lastUsername = $authenticationUtils->getLastUsername();
-            return $this->redirectToRoute('questionnaire');
+            if($this->denyAccessUnlessGranted('ROLE_ADMIN') && !$this->denyAccessUnlessGranted('ROLE_ADMIN')){
+                return $this->redirectToRoute('affichage');
+            }
+            else if($this->denyAccessUnlessGranted('ROLE_ADMIN')){
+                return $this->redirectToRoute('home');
+            }
         }
 
         // get the login error if there is one

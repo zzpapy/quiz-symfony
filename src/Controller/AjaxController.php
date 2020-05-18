@@ -75,31 +75,33 @@ class AjaxController extends AbstractController
     */
     public function AjaxProp(Request $request,QuestionRepository $questRepo = null,EntityManagerInterface $manager)
     {
-        
         $id_quest = $request->get("id");
         $text = $request->get("text");
-        $correct = $request->get("correct");
-        // dump($correct);die;
-        $proposition = new Proposition();
-        $form = $this->createForm(AjaxPropositionType::class, $proposition);
-        $question = $questRepo->findOneBy([
-            "id" => $request->get('id')
-            ]);
-        $proposition->setCorrect($correct);
-        $proposition->setText($text);
-        $proposition->setQuestion($question);
-        
-        $manager->persist($proposition);
-        $manager->flush();
-        $id = $proposition->getId();
-        $text = $proposition->getText();
-        $array = [
-            "id" => $id,
-            "text" => $text
-        ];
-        return $this->render('ajax/prop.html.twig', [
-            "proposition" => $proposition
-        ]);die;
+        if($text != ""){
+
+            $correct = $request->get("correct");
+            // dump($correct);die;
+            $proposition = new Proposition();
+            $form = $this->createForm(AjaxPropositionType::class, $proposition);
+            $question = $questRepo->findOneBy([
+                "id" => $request->get('id')
+                ]);
+            $proposition->setCorrect($correct);
+            $proposition->setText($text);
+            $proposition->setQuestion($question);
+            
+            $manager->persist($proposition);
+            $manager->flush();
+            $id = $proposition->getId();
+            $text = $proposition->getText();
+            $array = [
+                "id" => $id,
+                "text" => $text
+            ];
+            return $this->render('ajax/prop.html.twig', [
+                "proposition" => $proposition
+            ]);die;
+        }
        
     }
     /**
